@@ -1,7 +1,18 @@
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import MealsScreen from "./screens/Meals";
+import LoginScreen from "./screens/Login";
+import RegisterScreen from "./screens/Register";
 import Modal from "./screens/Modal";
+
+const OnBoardingNavigtor = createStackNavigator({
+  Login: LoginScreen,
+  Register: RegisterScreen
+  },
+  {
+    initialRouteName: "Login",
+  }
+)
 
 const AppNavigator = createStackNavigator(
   {
@@ -25,4 +36,13 @@ const RootStack = createStackNavigator(
   }
 );
 
-export default createAppContainer(RootStack);
+const BaseStack = createSwitchNavigator({
+  OnBoarding: OnBoardingNavigtor,
+  Root: RootStack,
+  },
+  {
+    initialRouteName: "OnBoarding",
+  }
+)
+
+export default createAppContainer(BaseStack);
