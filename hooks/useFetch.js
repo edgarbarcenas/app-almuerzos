@@ -4,7 +4,7 @@ const useFetch = ( url ) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
-  const fetchMeals = async () => {
+  const fetchApi = async () => {
     const response = await fetch( url );
     const data = await response.json();
     setData(data);
@@ -12,7 +12,7 @@ const useFetch = ( url ) => {
   };
 
   useEffect(() => {
-    fetchMeals();
+    fetchApi();
   }, []);
 
   return { loading, data }
